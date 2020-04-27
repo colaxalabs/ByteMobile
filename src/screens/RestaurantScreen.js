@@ -56,12 +56,8 @@ export default function RestaurantScreen() {
 
 const styles = StyleSheet.create({
   container: {
-    // alignContent: 'center',
-    // alignItems: 'center',
-    // marginTop: 50,
-  },
-  title: {
-    fontFamily: 'IBMPlexSans-Regular',
-    fontSize: 18,
+    alignContent: 'center',
+    alignItems: 'center',
+    marginTop: 50,
   },
 });
