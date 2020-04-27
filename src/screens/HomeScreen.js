@@ -16,9 +16,9 @@ export default function HomeScreen() {
         const granted = await PermissionsAndroid.request(
           PermissionsAndroid.PERMISSIONS.ACCESS_FINE_LOCATION,
           {
-            title: 'Deli',
+            title: 'Byte',
             message:
-              'Deli would like access to your location for a better personalized experience',
+              'Byte would like access to your location for a better personalized experience',
             buttonNeutral: 'Ask Me Later',
             buttonNegative: 'Cancel',
             buttonPositive: 'OK',
@@ -42,7 +42,7 @@ export default function HomeScreen() {
         console.warn(err);
       }
     })();
-  });
+  }, [latitude, longitude]); // Perform re-render if latitude, longitude changes
   return (
     <Restaurants
       latitude={latitude}

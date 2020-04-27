@@ -16,6 +16,8 @@ import {ApolloClient} from 'apollo-client';
 import {ApolloProvider} from '@apollo/react-hooks';
 import {InMemoryCache} from 'apollo-cache-inmemory';
 import {HttpLink} from 'apollo-link-http';
+import {BlurView} from 'expo-blur';
+import {StyleSheet} from 'react-native';
 
 import FontAwesome5 from 'react-native-vector-icons/FontAwesome5';
 
@@ -30,7 +32,7 @@ const Tab = createBottomTabNavigator();
 const Stack = createStackNavigator();
 
 const link = new HttpLink({
-  uri: 'https://6ceb4fc3.ngrok.io/query',
+  uri: 'https://7396fc12.ngrok.io/query',
 });
 const cache = new InMemoryCache();
 const client = new ApolloClient({
@@ -52,10 +54,22 @@ function Restaurant() {
         headerTitleStyle: {
           fontFamily: 'IBMPlexSans-Bold',
         },
+        headerTransparent: 'true',
+        headerBackground: () => (
+          <BlurView
+            tint="light"
+            intensity={100}
+            style={StyleSheet.absoluteFill}
+          />
+        ),
       }}>
       <Stack.Screen name="Explore" component={HomeScreen} />
       <Stack.Screen
-        options={({route}) => ({title: route.params.name, headerShown: 'true'})}
+        options={({route}) => ({
+          title: route.params.name,
+          headerShown: 'true',
+          headerTransparent: 'true',
+        })}
         name="RestaurantDetails"
         component={RestaurantScreen}
       />
