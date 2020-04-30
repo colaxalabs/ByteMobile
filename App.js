@@ -32,7 +32,7 @@ const Tab = createBottomTabNavigator();
 const Stack = createStackNavigator();
 
 const link = new HttpLink({
-  uri: 'http://933dd176.ngrok.io/query',
+  uri: 'https://db629793.ngrok.io/query',
 });
 const cache = new InMemoryCache();
 const client = new ApolloClient({

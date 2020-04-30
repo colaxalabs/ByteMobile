@@ -22,6 +22,7 @@ const FIND_RESTAURANT = gql`
       telephone
       about
       cuisine
+      verified
       addresses {
         addressString
       }

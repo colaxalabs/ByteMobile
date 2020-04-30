@@ -1,9 +1,21 @@
-import React from 'react';
-import {View, Text, StyleSheet} from 'react-native';
+import React, {useState} from 'react';
+import {
+  View,
+  Text,
+  StyleSheet,
+  Modal,
+  TouchableOpacity,
+  Alert,
+} from 'react-native';
+import AwesomeButton from 'react-native-really-awesome-button/src/themes/blue';
 
 import FontAwesome5 from 'react-native-vector-icons/FontAwesome5';
+import Octicons from 'react-native-vector-icons/Octicons';
+
+import RestaurantInfoModal from './RestaurantInfoModal';
 
 export default function About({restaurant}) {
+  const [modalVisible, setModalVisible] = useState(false);
   // Open external URL
   // const openExternalURL = async (url) => {
   //   const supported = await Linking.canOpenURL(url);
@@ -22,21 +34,50 @@ export default function About({restaurant}) {
   // };
   return (
     <View style={styles.container}>
+      <Modal
+        animationType="slide"
+        transparent={true}
+        visible={modalVisible}
+        onRequestClose={() => {
+          Alert.alert('Modal has been closed.');
+        }}>
+        <View style={styles.centeredView}>
+          <View style={styles.modalView}>
+            <RestaurantInfoModal restaurant={restaurant} />
+
+            <AwesomeButton
+              textFontFamily="IBMPlexSans-Bold"
+              textSize={20}
+              width={300}
+              onPress={() => {
+                setModalVisible(!modalVisible);
+              }}>
+              Close
+            </AwesomeButton>
+          </View>
+        </View>
+      </Modal>
       <View>
-        <Text style={styles.text}>{restaurant.restaurantName}</Text>
+        <Text style={styles.text}>
+          {restaurant.restaurantName}
+          {restaurant.verified ? (
+            <Octicons name="verified" size={20} />
+          ) : null}, {restaurant.about}, {restaurant.addresses[0].addressString}
+        </Text>
       </View>
       <View>
-        <Text style={styles.cuisine}>{restaurant.cuisine}</Text>
+        <Text style={styles.cuisine}>
+          {restaurant.cuisine} {'\u2022'}
+        </Text>
       </View>
-      <View>
-        <Text style={styles.about}>{restaurant.about}</Text>
-      </View>
-      <View style={styles.addressContainer}>
-        <Text style={styles.address}>
+      <TouchableOpacity
+        onPress={() => setModalVisible(true)}
+        style={styles.addressContainer}>
+        <Text style={styles.info}>
           <FontAwesome5 name="info-circle" size={20} />
           Restaurant Info
         </Text>
-      </View>
+      </TouchableOpacity>
     </View>
   );
 }
@@ -54,9 +95,30 @@ const styles = StyleSheet.create({
     fontFamily: 'IBMPlexSans-Regular',
     fontSize: 18,
   },
-  about: {
-    fontFamily: 'IBMPlexSans-Regular',
+  centeredView: {
+    flex: 1,
+    justifyContent: 'center',
+    alignItems: 'center',
+    marginTop: 22,
+  },
+  modalView: {
+    margin: 20,
+    backgroundColor: 'white',
+    borderRadius: 5,
+    padding: 35,
+    alignItems: 'center',
+    shadowColor: '#000',
+    shadowOffset: {
+      width: 0,
+      height: 2,
+    },
+    shadowOpacity: 0.25,
+    shadowRadius: 3.84,
+    elevation: 5,
+  },
+  info: {
     fontSize: 18,
+    fontFamily: 'IBMPlexSans-Regular',
   },
   address: {
     marginTop: 5,
@@ -66,5 +128,9 @@ const styles = StyleSheet.create({
   },
   addressContainer: {
     marginTop: 20,
+  },
+  button: {
+    backgroundColor: '#0062ff',
+    borderRadius: 0,
   },
 });
