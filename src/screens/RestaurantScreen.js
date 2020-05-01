@@ -13,6 +13,7 @@ import gql from 'graphql-tag';
 import Slider from '../components/Slider';
 import ErrorCard from '../components/ErrorCard';
 import About from '../components/About';
+import Menu from '../components/Menu';
 
 // Construct query
 const FIND_RESTAURANT = gql`
@@ -23,6 +24,17 @@ const FIND_RESTAURANT = gql`
       about
       cuisine
       verified
+      menu {
+        id
+        headline
+        dishes {
+          id
+          title
+          description
+          price
+          image
+        }
+      }
       addresses {
         addressString
       }
@@ -71,6 +83,11 @@ export default function RestaurantScreen() {
         <View>
           <About restaurant={data.findRestaurant} />
         </View>
+        {data.findRestaurant.menu.length === 0
+          ? null
+          : data.findRestaurant.menu.map((menu, id) => (
+              <Menu key={menu.id} menu={menu} />
+            ))}
       </ScrollView>
     </SafeAreaView>
   );
