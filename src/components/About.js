@@ -46,7 +46,8 @@ export default function About({restaurant}) {
             <RestaurantInfoModal restaurant={restaurant} />
 
             <AwesomeButton
-              textFontFamily="IBMPlexSans-Bold"
+              backgroundColor="#0062ff"
+              textFontFamily="IBMPlexSans-Regular"
               textSize={20}
               width={300}
               onPress={() => {
@@ -128,9 +129,5 @@ const styles = StyleSheet.create({
   },
   addressContainer: {
     marginTop: 20,
-  },
-  button: {
-    backgroundColor: '#0062ff',
-    borderRadius: 0,
   },
 });

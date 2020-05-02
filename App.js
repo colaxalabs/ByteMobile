@@ -25,6 +25,7 @@ import HomeScreen from './src/screens/HomeScreen';
 import FavoriteScreen from './src/screens/FavoriteScreen';
 import ProfileScreen from './src/screens/ProfileScreen';
 import RestaurantScreen from './src/screens/RestaurantScreen';
+import DishItem from './src/components/DishItem';
 
 import {Provider as PaperProvider} from 'react-native-paper';
 
@@ -32,7 +33,7 @@ const Tab = createBottomTabNavigator();
 const Stack = createStackNavigator();
 
 const link = new HttpLink({
-  uri: 'https://a2d013be.ngrok.io/query',
+  uri: 'https://e105ee3e.ngrok.io/query',
 });
 const cache = new InMemoryCache();
 const client = new ApolloClient({
@@ -72,6 +73,14 @@ function Restaurant() {
         })}
         name="RestaurantDetails"
         component={RestaurantScreen}
+      />
+      <Stack.Screen
+        options={({route}) => ({
+          title: route.params.dish.title,
+          headerShown: 'true',
+        })}
+        name="DishItem"
+        component={DishItem}
       />
     </Stack.Navigator>
   );

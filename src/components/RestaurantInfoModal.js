@@ -38,7 +38,7 @@ export default function RestaurantInfoModal({restaurant}) {
 const styles = StyleSheet.create({
   text: {
     fontSize: 20,
-    fontFamily: 'IBMPlexSans-Medium',
+    fontFamily: 'IBMPlexSans-Regular',
   },
   textContainer: {
     marginTop: 10,

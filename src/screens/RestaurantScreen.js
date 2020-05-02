@@ -75,7 +75,7 @@ export default function RestaurantScreen() {
   }
 
   return (
-    <SafeAreaView>
+    <SafeAreaView style={styles.viewContainer}>
       <ScrollView>
         <View>
           {!loading && <Slider images={data.findRestaurant.displayPics} />}
@@ -94,6 +94,9 @@ export default function RestaurantScreen() {
 }
 
 const styles = StyleSheet.create({
+  viewContainer: {
+    backgroundColor: '#f2f2f2',
+  },
   container: {
     alignContent: 'center',
     alignItems: 'center',

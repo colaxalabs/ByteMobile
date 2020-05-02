@@ -1,20 +1,29 @@
 import React from 'react';
-import {View, Text, StyleSheet, Image} from 'react-native';
+import {View, Text, StyleSheet, Image, TouchableOpacity} from 'react-native';
+import {useNavigation} from '@react-navigation/native';
 
 export default function Dish({dish}) {
+  const navigation = useNavigation();
   return (
     <View style={styles.container}>
       <View style={styles.dishContainer}>
         <View style={styles.subContainer}>
-          <View>
-            <Text style={styles.dishTitle}>{dish.title}</Text>
-          </View>
-          <View style={styles.descriptionContainer}>
-            <Text style={styles.dishDescription}>{dish.description}</Text>
-          </View>
-          <View style={styles.priceContainer}>
-            <Text style={styles.dishPrice}>KSH {dish.price}</Text>
-          </View>
+          <TouchableOpacity
+            onPress={() =>
+              navigation.navigate('DishItem', {
+                dish: dish,
+              })
+            }>
+            <View>
+              <Text style={styles.dishTitle}>{dish.title}</Text>
+            </View>
+            <View style={styles.descriptionContainer}>
+              <Text style={styles.dishDescription}>{dish.description}</Text>
+            </View>
+            <View style={styles.priceContainer}>
+              <Text style={styles.dishPrice}>KSH {dish.price}</Text>
+            </View>
+          </TouchableOpacity>
         </View>
         {dish.image ? (
           <View style={styles.imageContainer}>
@@ -54,7 +63,7 @@ const styles = StyleSheet.create({
   dishPrice: {
     fontFamily: 'IBMPlexSans-Medium',
     fontSize: 15,
-    color: '#888',
+    // color: '#888',
   },
   image: {
     width: 50,
