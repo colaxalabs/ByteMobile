@@ -23,9 +23,7 @@ export default function DishItem() {
             </Text>
           </View>
           <View>
-            <Text onPress={() => console.log('')} style={styles.counter}>
-              {counter}
-            </Text>
+            <Text style={styles.counter}>{counter}</Text>
           </View>
           <View>
             <Text
