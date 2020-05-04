@@ -33,6 +33,10 @@ const FIND_RESTAURANT = gql`
           description
           price
           image
+          dishAddOn {
+            name
+            price
+          }
         }
       }
       addresses {

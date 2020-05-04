@@ -63,7 +63,6 @@ const styles = StyleSheet.create({
   dishPrice: {
     fontFamily: 'IBMPlexSans-Medium',
     fontSize: 15,
-    // color: '#888',
   },
   image: {
     width: 50,
